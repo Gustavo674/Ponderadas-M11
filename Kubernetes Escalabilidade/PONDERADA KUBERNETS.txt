@@ -1,0 +1,45 @@
+PONDERADA KUBERNETS
+
+Terminal 1
+1-
+minikube start --memory=4096 --cpus=4
+2-
+minikube addons enable metrics-server
+kubectl -n kube-system get deploy metrics-server
+kubectl top nodes
+kubectl top pods
+3-
+kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+kubectl get hpa
+kubectl describe hpa php-apache
+
+Terminal 2
+1-
+minikube service php-apache --url
+
+Terminal 3
+1-
+$Url = "http://127.0.0.1:57553/?work=400000"   # <- SUBSTITUA pela sua URL
+$Workers = 40
+$Requests = 2500
+
+$jobs = 1..$Workers | ForEach-Object {
+  Start-Job -ScriptBlock {
+    param($u,$n)
+    for ($i=0; $i -lt $n; $i++) {
+      curl.exe $u > $null 2>&1
+    }
+  } -ArgumentList $Url,$Requests
+}
+
+Get-Job | Wait-Job
+Get-Job | Remove-Job
+
+Terminal 4
+1-
+kubectl get hpa -w
+
+Terminal 5
+1-
+kubectl top pods
+kubectl get deploy php-apache -w
