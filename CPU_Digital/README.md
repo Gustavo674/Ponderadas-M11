@@ -10,19 +10,19 @@ A base para qualquer operação aritmética em uma CPU começa com a capacidade 
 
 O **Half Adder** é o circuito mais elementar para a soma binária. Ele recebe dois bits como entrada (A e B) e produz duas saídas: a **Soma (Sum)** e o **Transporte (Carry)**. A soma é o resultado da operação XOR entre as entradas, e o transporte é o resultado da operação AND.
 
-![Diagrama do Half Adder](\imagens\half_adder.png)
+![Diagrama do Half Adder](/imagens/half_adder.png)
 
 ### Full Adder (Somador Completo)
 
 Para construir somadores maiores, precisamos de um componente que possa lidar com um bit de transporte vindo de uma soma anterior. O **Full Adder** resolve isso: ele é construído a partir de dois Half Adders e uma porta OR. Ele soma três bits (A, B e um Carry-In) e produz uma saída de Soma (Sum) e um Carry-Out.
 
-![Diagrama do Full Adder](\imagens\full_adder.png)
+![Diagrama do Full Adder](/imagens/full_adder.png)
 
 ### 8-bit Adder (Somador de 8 bits)
 
 Com o Full Adder como bloco de construção, podemos criar um somador para qualquer número de bits simplesmente conectando-os em cascata. O **Somador de 8 bits** é composto por oito Full Adders, onde o Carry-Out de um estágio é conectado ao Carry-In do próximo. Este circuito forma a base para a operação de soma na nossa ULA, sendo capaz de somar dois números de 8 bits.
 
-![Diagrama do Somador de 8 bits](\imagens\somador_8bits.png)
+![Diagrama do Somador de 8 bits](/imagens/somador_8bits.png)
 
 ## 2. A ULA (Unidade Lógica e Aritmética)
 
@@ -32,7 +32,7 @@ A Unidade Lógica e Aritmética (ULA, ou ALU em inglês) é o coração computac
 
 A operação de subtração (`A - B`) é implementada de forma eficiente utilizando o somador de 8 bits. Isso é possível através da técnica do **complemento de dois**. O operando `B` é invertido (complemento de um) e, em seguida, somamos `1` ao resultado. Isso é feito de forma prática invertendo todos os bits de `B` com portas NOT e definindo o `Carry-In` inicial do somador como `1`.
 
-![Diagrama do Subtrator de 8 bits](\imagens\sub_8bits.png)
+![Diagrama do Subtrator de 8 bits](/imagens/sub_8bits.png)
 
 ### Multiplicador e Divisor (Operandos de 4 bits)
 
@@ -41,9 +41,9 @@ Para as operações de multiplicação e divisão, foram criados circuitos espec
 * **Multiplicador:** Utiliza uma série de portas AND para gerar os produtos parciais e, em seguida, usa somadores para combinar esses produtos e gerar o resultado final de 8 bits.
 * **Divisor:** Implementa a lógica de divisão binária para calcular um **Quociente (Q)** e um **Resto (R)** a partir de dois operandos de 4 bits.
 
-![Diagrama do Multiplicador](\imagens\mult.png)
+![Diagrama do Multiplicador](/imagens/mult.png)
 
-![Diagrama do Divisor](\imagens\div.png)
+![Diagrama do Divisor](/imagens/div.png)
 
 ### Integração da ULA
 
@@ -53,7 +53,7 @@ A entrada de controle **`OP[3:0]`** (Opcode) determina qual resultado o MUX sele
 
 Além disso, a ULA gera a **`FlagZero`**. Esta saída se torna `1` somente quando o resultado da operação é exatamente zero. Isso é feito com uma porta NOR de 8 entradas, que é fundamental para a implementação de saltos condicionais na Unidade de Controle.
 
-![Diagrama da ULA integrada](\imagens\ULA.png)
+![Diagrama da ULA integrada](/imagens/ULA.png)
 
 ## 3. A Arquitetura e o Caminho de Dados
 
@@ -63,13 +63,13 @@ Enquanto a ULA é o centro de cálculo, a arquitetura define como os dados se mo
 
 O bloco de memória armazena tanto as instruções do programa quanto os dados. Para acessar uma posição, seu endereço é primeiro carregado no **MAR (Memory Address Register)**. A memória então disponibiliza o dado contido nesse endereço na sua saída (`Data_Out`). Para este projeto, foi utilizada uma ROM para que o programa não se perca entre as simulações.
 
-![Diagrama da Memória](\imagens\Memoria.png)
+![Diagrama da Memória](/imagens/Memoria.png)
 
 ### Program Counter (PC)
 
 O **Program Counter (PC)** é um registrador especial que tem uma função crucial: apontar para o endereço da próxima instrução a ser executada na memória. A cada ciclo de busca (fetch), o PC é incrementado. Em operações de desvio (Jumps), um novo endereço pode ser carregado diretamente no PC, alterando o fluxo de execução do programa. Ele possui sinais de controle para habilitar a contagem (`PCE`), carregar um novo valor (`PCL`) e resetar.
 
-![Diagrama do Program Counter](\imagens\PC.png)
+![Diagrama do Program Counter](/imagens/PC.png)
 
 ### Caminho de Dados (Datapath)
 
@@ -83,7 +83,7 @@ O diagrama do Caminho de Dados (`Caminhos.dig`) mostra a interconexão de todos 
 
 Esse arranjo permite um fluxo de dados ordenado, onde a Unidade de Controle gerencia os sinais (`RGA_Ld`, `RGB_Ld`, `WBus_Sel`, etc.) para garantir que a informação correta chegue ao lugar certo no momento certo.
 
-![Diagrama do Caminho de Dados](\imagens\Caminho.png)
+![Diagrama do Caminho de Dados](/imagens/Caminho.png)
 
 ## 4. A Unidade de Controle e os Ciclos da CPU
 
@@ -93,7 +93,7 @@ A Unidade de Controle (UC) é o componente que comanda o datapath, orquestrando 
 
 A base para o funcionamento da UC é o tempo. O **Sequenciador** é um circuito que gera uma sequência de pulsos de tempo (estados `T1` a `T6`). A cada pulso de clock, ele avança para o próximo estado, reiniciando ao final. Cada estado `T` corresponde a um passo em um ciclo da CPU, permitindo que operações complexas sejam divididas em etapas menores e sincronizadas.
 
-![Diagrama do Sequenciador](\imagens\sequencia.png)
+![Diagrama do Sequenciador](/imagens/sequencia.png)
 
 ### Lógica de Controle e Conjunto de Instruções
 
@@ -119,7 +119,7 @@ Com base nessa combinação, um grande circuito de lógica combinacional (portas
 | **OUT** | Envia o valor do Acumulador para a saída |
 | **HLT** | Para a execução (Halt)             |
 
-![Diagrama do Controlador](\imagens\controlador.png)
+![Diagrama do Controlador](/imagens/controlador.png)
 
 ### Ciclo de Busca (Fetch)
 
@@ -149,15 +149,15 @@ Para validar a CPU, um programa foi carregado na memória para executar uma sér
 
 **1. Estado Inicial:** Antes de iniciar o clock, a CPU está em seu estado de reset. Os registradores estão zerados e os displays mostram **"00"**.
 
-![CPU parada/resetada](\imagens\cpu1.png)
+![CPU parada/resetada](/imagens/cpu1.png)
 
 **2. Em Execução:** Após iniciar o clock, a CPU começa a executar o programa. Este snapshot captura o momento em que o Program Counter está no endereço **`0x02`**. Note que, embora a CPU esteja processando, o display ainda não foi atualizado e permanece em "00", aguardando uma instrução `OUT`.
 
-![CPU executando, PC em 02](\imagens\cpu2.png)
+![CPU executando, PC em 02](/imagens/cpu2.png)
 
 **3. Resultado Final:** Após a conclusão dos cálculos e a execução da instrução `OUT`, o resultado final é enviado para o registrador de saída. O display agora mostra o valor hexadecimal **"Fd"** (equivalente a 253 em decimal).
 
-![CPU em execução com resultado Fd](\imagens\cpu3.png)
+![CPU em execução com resultado Fd](/imagens/cpu3.png)
 
 Esta sequência demonstra com sucesso que a CPU está funcional, executando as instruções corretamente, processando os dados e atualizando a saída como esperado.
 
@@ -165,4 +165,4 @@ Esta sequência demonstra com sucesso que a CPU está funcional, executando as i
 
 O projeto foi organizado de forma modular, com cada componente principal em seu próprio arquivo `.dig`.
 
-![Estrutura de Arquivos](\imagens\arquivo.png)
+![Estrutura de Arquivos](/imagens/arquivo.png)
