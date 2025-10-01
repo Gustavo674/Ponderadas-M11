@@ -10,7 +10,7 @@ A base para qualquer operação aritmética em uma CPU começa com a capacidade 
 
 O **Half Adder** é o circuito mais elementar para a soma binária. Ele recebe dois bits como entrada (A e B) e produz duas saídas: a **Soma (Sum)** e o **Transporte (Carry)**. A soma é o resultado da operação XOR entre as entradas, e o transporte é o resultado da operação AND.
 
-![Diagrama do Half Adder](/imagens/half_adder.png)
+![Diagrama do Half Adder](half_adder.png)
 
 ### Full Adder (Somador Completo)
 
