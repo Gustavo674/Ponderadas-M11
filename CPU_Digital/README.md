@@ -2,6 +2,13 @@
 
 Este projeto apresenta a implementação de uma CPU de 8 bits funcional. O objetivo é demonstrar a construção dos componentes fundamentais, desde os blocos lógicos mais simples até a integração de uma Unidade Lógica e Aritmética (ULA) e uma Unidade de Controle capaz de executar um conjunto de instruções.
 
+## Vídeos da Demonstração
+
+- [Vídeo 1 — Blocos Fundamentais](imagens/Vid_1.mp4)
+- [Vídeo 2 — ULA Completa](imagens/Vid_2.mp4)
+- [Vídeo 3 — Memória, PC e Caminho de Dados](imagens/Vid_3.mp4)
+- [Vídeo 4 — Unidade de Controle e CPU Completa](imagens/Vid_4.mp4)
+
 ## 1. Blocos Fundamentais da Aritmética
 
 A base para qualquer operação aritmética em uma CPU começa com a capacidade de somar dois bits. A partir de componentes simples, construímos progressivamente circuitos mais complexos capazes de realizar cálculos com palavras de 8 bits.
