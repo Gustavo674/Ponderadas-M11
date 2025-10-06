@@ -4,7 +4,7 @@ Este projeto apresenta a implementação de uma CPU de 8 bits funcional. O objet
 
 ## Vídeos da Demonstração
 
-- [Vídeo — CPU]([https://drive.google.com/drive/u/0/folders/1U9V4IiraTXAVxcejg288d7yYNc-V21Le?hl=pt-BR](https://drive.google.com/drive/folders/1U9V4IiraTXAVxcejg288d7yYNc-V21Le?usp=sharing))
+- [Vídeo — CPU](https://drive.google.com/drive/folders/1U9V4IiraTXAVxcejg288d7yYNc-V21Le?usp=sharing)
 
 
 ## 1. Blocos Fundamentais da Aritmética
